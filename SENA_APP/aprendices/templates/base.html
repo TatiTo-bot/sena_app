@@ -11,58 +11,122 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .navbar {
+            background-color: #16213e;
         }
 
         .navbar-brand {
+            color: #ffffff;
             font-weight: bold;
         }
 
-        .jumbotron {
-            background: linear-gradient(135deg, #28a745, #20c997);
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
         }
 
-        .card {
-            transition: transform 0.2s;
-            border: none;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
         }
 
-        .table th {
-            border-top: none;
+        .btn-custom {
+            background: #e94560;
+            color: white;
         }
 
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(40, 167, 69, 0.05);
+        .btn-custom:hover {
+            background: #ff6f61;
+        }
+
+        .shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .shape1 {
+            width: 200px;
+            height: 200px;
+            background: #00adb5;
+            top: 20%;
+            left: 10%;
+            animation: move1 10s infinite;
+        }
+
+        .shape2 {
+            width: 150px;
+            height: 150px;
+            background: #ffb142;
+            top: 40%;
+            right: 15%;
+            animation: move2 8s infinite;
+        }
+
+        .shape3 {
+            width: 180px;
+            height: 180px;
+            background: #e94560;
+            top: 60%;
+            left: 30%;
+            animation: move3 12s infinite;
+        }
+
+        @keyframes move1 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50px, -30px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes move2 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes move3 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+            100% { transform: translate(0, 0); }
         }
 
         footer {
-            margin-top: auto;
-        }
-
-        .alert-info {
-            border-left: 4px solid #17a2b8;
-        }
-
-        .badge {
-            font-size: 0.8em;
+            background-color: #16213e;
+            text-align: center;
+            padding: 20px;
+            position: relative;
         }
     </style>
-
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'aprendices:inicio' %}">
-                <img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX6Gat1r36ATdBS7sTqqFH8TvIVPMkqsdLgw&s" alt="Logo Sena">
-                <strong>SENA APP</strong>
-            </a>
+            <a class="navbar-brand" href="{% url 'aprendices:inicio' %}">SENA APP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,12 +146,20 @@
         </div>
     </nav>
 
-    <main class="container mt-4">
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div class="hero">
+        <div class="shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+        </div>
+        <div>
+            <h1>Bienvenido a SENA APP</h1>
+            <p>Gestiona tus aprendices de manera eficiente y moderna.</p>
+            <a href="{% url 'aprendices:lista_aprendices' %}" class="btn btn-custom">Comenzar</a>
+        </div>
+    </div>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
+    <footer class="text-white">
         <div class="container">
             <p>&copy; 2025 SENA APP - Sistema de Gestión de Aprendices</p>
         </div>
